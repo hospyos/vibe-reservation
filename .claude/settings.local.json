@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(npm install *)",
+      "PowerShell(npm run *)",
+      "Skill(run)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\hemin\\\\OneDrive\\\\바탕 화면\\\\Vibe\\\\Reservation\"; Start-Process -FilePath \"C:\\\\Program Files\\\\nodejs\\\\node.exe\" -ArgumentList \"C:\\\\Program Files\\\\nodejs\\\\node_modules\\\\npm\\\\bin\\\\npm-cli.js run dev\" -NoNewWindow -PassThru | Select-Object Id)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\hemin\\\\OneDrive\\\\바탕 화면\\\\Vibe\\\\Reservation\"; $proc = Start-Process -FilePath \"C:\\\\Program Files\\\\nodejs\\\\npm.cmd\" -ArgumentList \"run dev\" -NoNewWindow -RedirectStandardOutput \"$env:TEMP\\\\nextjs-out.txt\" -RedirectStandardError \"$env:TEMP\\\\nextjs-err.txt\" -PassThru; Write-Output \"PID: $\\($proc.Id\\)\")",
+      "PowerShell(Get-Content *)",
+      "PowerShell(Start-Process \"http://localhost:3000\")",
+      "PowerShell(Get-Process *)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\hemin\\\\OneDrive\\\\바탕 화면\\\\Vibe\\\\Reservation\"; Start-Process -FilePath \"C:\\\\Program Files\\\\nodejs\\\\npm.cmd\" -ArgumentList \"run dev\" -NoNewWindow -RedirectStandardOutput \"$env:TEMP\\\\nextjs-out.txt\" -RedirectStandardError \"$env:TEMP\\\\nextjs-err.txt\" -PassThru | Select-Object Id)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; $v = Get-Command vercel -ErrorAction SilentlyContinue; $g = Get-Command git -ErrorAction SilentlyContinue; \"vercel: $\\($v.Source\\)\"; \"git: $\\($g.Source\\)\")"
+    ]
+  }
+}
