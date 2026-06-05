@@ -8,15 +8,13 @@ async function callAPI(
   messages: Array<{ role: string; content: string }>,
   systemPrompt: string,
 ): Promise<string> {
+  const safeKey = apiKey.replace(/[^\x20-\x7E]/g, '');
+
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${apiKey}`,
+      Authorization: `Bearer ${safeKey}`,
       'Content-Type': 'application/json',
-      'HTTP-Referer':
-        typeof window !== 'undefined'
-          ? window.location.origin
-          : 'https://vibe-reservation.vercel.app',
       'X-Title': 'Vibe Medical Reservation',
     },
     body: JSON.stringify({
