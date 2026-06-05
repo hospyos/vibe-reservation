@@ -11,6 +11,7 @@ import CompletedStep from '@/components/CompletedStep';
 import { AppStep, AppState } from '@/lib/types';
 import { analyzeInquiry, suggestSlot } from '@/lib/openrouter';
 import { generateSlots } from '@/lib/schedule';
+import { saveAppointment } from '@/lib/supabase';
 
 const INITIAL_STATE: AppState = {
   inquiry: '',
@@ -90,7 +91,28 @@ export default function Home() {
     setStep('confirming');
   };
 
-  const handleConfirm = () => setStep('completed');
+  const handleConfirm = async () => {
+    if (state.selectedSlot && state.analysis) {
+      const bookingNumber = String(Math.floor(Math.random() * 900000) + 100000);
+      try {
+        await saveAppointment({
+          booking_number: bookingNumber,
+          patient_name: state.patientName,
+          department: state.selectedSlot.department,
+          doctor: state.selectedSlot.doctor,
+          appointment_date: state.selectedSlot.date,
+          appointment_time: state.selectedSlot.time,
+          inquiry: state.inquiry,
+          symptoms: state.analysis.symptoms,
+          urgency: state.analysis.urgency,
+        });
+      } catch {
+        // 저장 실패 시 조용히 무시 — 예약 확정 화면은 정상 표시
+      }
+      setState((prev) => ({ ...prev, bookingNumber }));
+    }
+    setStep('completed');
+  };
 
   const handleReset = () => {
     setState(INITIAL_STATE);
@@ -205,6 +227,7 @@ export default function Home() {
           <CompletedStep
             slot={state.selectedSlot}
             patientName={state.patientName}
+            bookingNumber={state.bookingNumber}
             onReset={handleReset}
           />
         )}

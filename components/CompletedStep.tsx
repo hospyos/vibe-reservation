@@ -1,22 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { AppointmentSlot } from '@/lib/types';
 import { formatDate, formatTime } from '@/lib/schedule';
 
 interface Props {
   slot: AppointmentSlot;
   patientName: string;
+  bookingNumber?: string;
   onReset: () => void;
 }
 
-export default function CompletedStep({ slot, patientName, onReset }: Props) {
-  const [bookingNo, setBookingNo] = useState('');
-
-  useEffect(() => {
-    setBookingNo(String(Math.floor(Math.random() * 900000) + 100000));
-  }, []);
-
+export default function CompletedStep({ slot, patientName, bookingNumber, onReset }: Props) {
   return (
     <div className="max-w-md mx-auto text-center space-y-6">
       <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto">
@@ -35,7 +29,7 @@ export default function CompletedStep({ slot, patientName, onReset }: Props) {
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden text-left">
         <div className="bg-gradient-to-r from-emerald-500 to-teal-500 px-5 py-4 text-white">
           <p className="text-emerald-100 text-xs mb-0.5">예약 번호</p>
-          <p className="text-2xl font-mono font-bold">#{bookingNo}</p>
+          <p className="text-2xl font-mono font-bold">#{bookingNumber ?? '------'}</p>
         </div>
         <div className="p-5 space-y-3">
           {[

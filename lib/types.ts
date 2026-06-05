@@ -30,4 +30,5 @@ export interface AppState {
   slots: AppointmentSlot[];
   suggestion: SlotSuggestion | null;
   selectedSlot: AppointmentSlot | null;
+  bookingNumber?: string;
 }
